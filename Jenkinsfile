@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label("terraform-aws")
+        label("terraform")
     }
     stages {
         stage("Test") {

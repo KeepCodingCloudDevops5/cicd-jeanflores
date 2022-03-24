@@ -14,3 +14,19 @@ push:
 intregration_test:
 	@echo INTEGRATION_TEST
 	docker run --rm $(DOCKER_IMAGE_NAME) --platform linux/x86_64
+
+dbb:
+	@echo docker build base image
+	cd docker && docker build -t jeanflores2c93/base-jenkins-agent:latest -f base.dockerfile .
+
+dpb:
+	@echo push to dockerhub
+	docker push jeanflores2c93/base-jenkins-agent
+
+dbt:
+	@echo docker build terraform image
+	cd docker && docker build -t jeanflores2c93/terraform-gcp-sdk-agent:latest -f terraform.dockerfile .
+
+dpt:
+	@echo push to dockerhub
+	docker push jeanflores2c93/terraform-gcp-sdk-agent
