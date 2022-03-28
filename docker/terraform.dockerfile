@@ -1,7 +1,7 @@
 ### Agent with Terraform and aws cli
 # FROM google/cloud-sdk:slim
 
-FROM jeanflores2c93/base-jenkins-agent
+FROM jeanflores2c93/base-jenkins-agents
 
 # Installing terraform
 RUN apt-get -y install unzip && \
@@ -13,3 +13,7 @@ RUN apt-get -y install unzip && \
     apt-get -y remove unzip && \
     apt-get clean && \
     rm /tmp/terraform /tmp/terraform.zip
+
+EXPOSE 22
+
+CMD ["/usr/sbin/sshd", "-D"]

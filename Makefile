@@ -1,5 +1,6 @@
 DOCKER_USER_NAME=jeanflores2c93
 DOCKER_IMAGE_NAME=$(DOCKER_USER_NAME)/terraform-google-sdk-jenkins-agent:latest
+PROJECT_ID=steady-tape-345517
 
 all: dockerize push intregration_test
 
@@ -17,11 +18,11 @@ intregration_test:
 
 dbb:
 	@echo docker build base image
-	cd docker && docker build -t jeanflores2c93/base-jenkins-agent:latest -f base.dockerfile .
+	cd docker && docker build -t jeanflores2c93/base-jenkins-agents:latest -f base.dockerfile .
 
 dpb:
 	@echo push to dockerhub
-	docker push jeanflores2c93/base-jenkins-agent
+	docker push jeanflores2c93/base-jenkins-agents
 
 dbt:
 	@echo docker build terraform image
@@ -30,3 +31,13 @@ dbt:
 dpt:
 	@echo push to dockerhub
 	docker push jeanflores2c93/terraform-gcp-sdk-agent
+
+create-gs-bucket:
+	@echo create gcs bucket for backend terraform
+	gsutil mb gs://backend-dev-jean-flores
+	gcloud config set project $PROJECT_ID
+
+### Dev bucket name
+# gs://backend-dev-jean-flores
+### Prod bucket name
+# gs://backend-prod-jean-flores
