@@ -14,6 +14,11 @@ RUN apt-get -y install unzip && \
     apt-get clean && \
     rm /tmp/terraform /tmp/terraform.zip
 
+ RUN curl -sSL https://sdk.cloud.google.com | bash
+
+# Adding the package path to local
+ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
+
 EXPOSE 22
 
 CMD ["/usr/sbin/sshd", "-D"]
