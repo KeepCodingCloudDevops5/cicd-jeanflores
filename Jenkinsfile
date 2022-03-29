@@ -1,7 +1,7 @@
 pipeline {
     agent {
-        // label("terraform-gcp")
-        docker { image "jeanflores2c93/terraform-gcp-sdk-agent" }
+        label("terraform")
+        // docker { image "jeanflores2c93/terraform-gcp-sdk-agent" }
     }
     stages {
         stage("Login into GCP") {
