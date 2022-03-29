@@ -2,13 +2,10 @@ pipeline {
     agent {
         label("terraform")
     }
-    environment {
-        GOOGLE_APPLICATION_CREDENTIALS = credentials('gcp_service_account')
-    }
     stages {
         stage("Login into GCP") {
             steps {
-                withCredentials(file(credentialsId: 'gcp_service_account', variable: "GOOGLE_APPLICATION_CREDENTIALS")) {
+                withCredentials([file(credentialsId: 'gcp_service_account', variable: "GOOGLE_APPLICATION_CREDENTIALS")]) {
                     sh "gcloud auth activate-service-account --key-file ${GOOGLE_APPLICATION_CREDENTIALS}"
                 }
             }
