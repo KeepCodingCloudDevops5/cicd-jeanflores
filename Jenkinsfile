@@ -8,7 +8,9 @@ pipeline {
     stages {
         stage("Login into GCP") {
             steps {
-                sh "gcloud auth activate-service-account --key-file ${env.GOOGLE_APPLICATION_CREDENTIALS}"
+                withCredentials(file(credentialsId: 'gcp_service_account', variable: "GOOGLE_APPLICATION_CREDENTIALS")) {
+                    sh "gcloud auth activate-service-account --key-file ${GOOGLE_APPLICATION_CREDENTIALS}"
+                }
             }
         }
         stage("Test") {
