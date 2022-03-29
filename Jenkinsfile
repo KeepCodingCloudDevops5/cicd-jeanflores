@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label("terraform")
+        label("terraform-gcp")
     }
     stages {
         stage("Login into GCP") {
