@@ -8,7 +8,7 @@ pipelineJob('Jobs/Pipeline Github Example') {
             scm {
                 git {
                     remote {
-                        url("git@github.com:JCFlores93/cicd-terraform-jenkins.git")
+                        url("https://github.com/JCFlores93/cicd-terraform-jenkins.git")
                     }
                     branches("master")
                     scriptPath('Jenkinsfile')
