@@ -25,6 +25,7 @@ pipeline {
                 sh "GOOGLE_ZONE=${env.GOOGLE_ZONE}"
                 sh "export GOOGLE_ZONE"
                 sh "gcloud config set project $GOOGLE_PROJECT"
+                sh "gcloud auth activate-service-account \"sa-jenkins@steady-tape-345517.iam.gserviceaccount.com\" --project=\"steady-tape-345517\" --key-file=${env.GOOGLE_APPLICATION_CREDENTIALS}"
             }
         }
         stage("Test") {
@@ -40,7 +41,7 @@ pipeline {
         }
         stage("List buckets"){
             steps{
-                sh "gsutil ls"
+                sh "gcloud auth application-default login gsutil ls"
             }
         }
     }
