@@ -24,6 +24,7 @@ pipeline {
                 sh "export GOOGLE_REGION"
                 sh "GOOGLE_ZONE=${env.GOOGLE_ZONE}"
                 sh "export GOOGLE_ZONE"
+                sh "gcloud config set project $GOOGLE_PROJECT"
             }
         }
         stage("Test") {
