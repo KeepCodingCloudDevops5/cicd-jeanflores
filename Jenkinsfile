@@ -35,12 +35,12 @@ pipeline {
         }
         stage("Terraform Init") {
             steps {
-                sh 'terraform init'
+                sh 'cd terraform/dev && terraform init'
             }
         }
         stage("Terraform Plan") {
             steps {
-                sh 'terraform plan'
+                sh 'cd terraform/dev && terraform plan'
             }
         }
         // stage("List buckets"){
