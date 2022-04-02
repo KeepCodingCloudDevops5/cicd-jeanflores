@@ -28,21 +28,25 @@ pipeline {
                 sh "gcloud auth activate-service-account \"sa-jenkins@steady-tape-345517.iam.gserviceaccount.com\" --project=\"steady-tape-345517\" --key-file=${env.GOOGLE_APPLICATION_CREDENTIALS}"
             }
         }
-        stage("Test") {
-            steps {
-                sh 'echo hola'
-            }
-        }
-        
         stage("Is there any terraform?") {
             steps {
                 sh 'terraform version'
             }
         }
-        stage("List buckets"){
-            steps{
-                sh "gcloud auth application-default login gsutil ls"
+        stage("Terraform Init") {
+            steps {
+                sh 'terraform init'
             }
         }
+        stage("Terraform Plan") {
+            steps {
+                sh 'terraform plan'
+            }
+        }
+        // stage("List buckets"){
+        //     steps{
+        //         sh "gcloud auth application-default login gsutil ls"
+        //     }
+        // }
     }
 }
