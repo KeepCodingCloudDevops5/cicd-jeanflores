@@ -2,7 +2,7 @@ folder('Jobs') {
     description('Jobs related to my software projects')
 }
 
-pipelineJob('Jobs/Pipeline Github Example') {
+pipelineJob('Jobs/cicd-test') {
     definition {
         cpsScm {
             scm {
