@@ -34,11 +34,13 @@ pipeline {
             }
         }
         stage("Terraform Init") {
+            when { changeset "*/terraform/dev/**"}
             steps {
                 sh 'cd terraform/dev && terraform init'
             }
         }
         stage("Terraform Plan") {
+            when { changeset "*/terraform/dev/**"}
             steps {
                 sh 'cd terraform/dev && terraform plan'
             }

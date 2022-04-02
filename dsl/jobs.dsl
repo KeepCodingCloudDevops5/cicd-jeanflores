@@ -2,7 +2,7 @@ folder('Jobs') {
     description('Jobs related to my software projects')
 }
 
-pipelineJob('Jobs/cicd-test') {
+pipelineJob('Jobs/cicd-dev') {
     definition {
         cpsScm {
             scm {
@@ -11,7 +11,23 @@ pipelineJob('Jobs/cicd-test') {
                         url("https://github.com/JCFlores93/cicd-terraform-jenkins.git")
                     }
                     branches("master")
-                    scriptPath('Jenkinsfile')
+                    scriptPath('Jenkinsfile.dev')
+                }
+            }
+        }
+    }
+}
+
+pipelineJob('Jobs/cicd-prod') {
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url("https://github.com/JCFlores93/cicd-terraform-jenkins.git")
+                    }
+                    branches("master")
+                    scriptPath('Jenkinsfile.prod')
                 }
             }
         }
