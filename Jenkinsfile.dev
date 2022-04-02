@@ -34,15 +34,19 @@ pipeline {
             }
         }
         stage("Terraform Init") {
-            when { changeset "*/terraform/dev/**"}
+            when { changeset "terraform/dev/**/*"}
             steps {
-                sh 'cd terraform/dev && terraform init'
+                dir("terraform/dev") {
+                    sh 'terraform init'
+                }
             }
         }
         stage("Terraform Plan") {
-            when { changeset "*/terraform/dev/**"}
+            when { changeset "terraform/dev/**/*"}
             steps {
-                sh 'cd terraform/dev && terraform plan'
+                dir("terraform/dev") {
+                    sh 'terraform plan'
+                }
             }
         }
         // stage("List buckets"){
