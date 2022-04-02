@@ -34,15 +34,27 @@ pipeline {
             }
         }
         stage("Terraform Init") {
-            when { changeset "*/terraform/prod/**"}
+            when { changeset "terraform/prod/**/*"}
             steps {
-                sh 'cd terraform/prod && terraform init'
+                dir("terraform/prod") {
+                    sh 'terraform init'
+                }
             }
         }
         stage("Terraform Plan") {
-            when { changeset "*/terraform/prod/**"}
+            when { changeset "terraform/prod/**/*"}
             steps {
-                sh 'cd terraform/prod && terraform plan'
+                dir("terraform/prod") {
+                    sh 'terraform plan'
+                }
+            }
+        }
+        stage("Terraform Apply") {
+            when { changeset "terraform/prod/**/*"}
+            steps {
+                dir("terraform/prod") {
+                    sh 'terraform apply --auto-approve'
+                }
             }
         }
     }

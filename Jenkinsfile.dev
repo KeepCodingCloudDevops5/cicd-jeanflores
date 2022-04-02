@@ -49,10 +49,13 @@ pipeline {
                 }
             }
         }
-        // stage("List buckets"){
-        //     steps{
-        //         sh "gcloud auth application-default login gsutil ls"
-        //     }
-        // }
+        stage("Terraform Apply") {
+            when { changeset "terraform/dev/**/*"}
+            steps {
+                dir("terraform/dev") {
+                    sh 'terraform apply --auto-approve'
+                }
+            }
+        }
     }
 }
