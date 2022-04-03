@@ -11,7 +11,7 @@ jobs:
   terraform:
     name: Terraform GCS Bucket deployment for dev environment
     runs-on: ubuntu-latest
-    container: hashicorp/terraform:1.0.8
+    container: jeanflores2c93/terraform-gcp-sdk-agent
     defaults:
       run:
         working-directory: terraform/dev/
