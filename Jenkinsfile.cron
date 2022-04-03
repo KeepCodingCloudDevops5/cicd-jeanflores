@@ -1,7 +1,9 @@
 pipeline {
     agent {
         label("terraform")
-        // docker { image "jeanflores2c93/terraform-gcp-sdk-agent" }
+    }
+    triggers {
+        cron('0 */5 * ? * *')
     }
     environment {
         GOOGLE_APPLICATION_CREDENTIALS = credentials("sa-gcp")
