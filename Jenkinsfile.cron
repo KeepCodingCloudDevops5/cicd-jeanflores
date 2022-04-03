@@ -10,6 +10,8 @@ pipeline {
         GOOGLE_PROJECT = "steady-tape-345517"
         GOOGLE_REGION = "us-central1"
         GOOGLE_ZONE = "us-central1-a"
+        DEV_BUCKET_NAME = acme-storage-dev-jean-flores
+        PROD_BUCKET_NAME=acme-storage-prod-jean-flores
     }
     stages {
         stage("Login into GCP") {
@@ -29,6 +31,16 @@ pipeline {
         stage("Is there any terraform?") {
             steps {
                 sh 'terraform version'
+            }
+        }
+        stage("Check dev bucket") {
+            steps {
+                sh "./utils/check_bucket_size.sh -p ${env.GOOGLE_PROJECT} -r ${env.GOOGLE_REGION} -z ${env.GOOGLE_ZONE} -b ${env.DEV_BUCKET_NAME}"
+            }
+        }
+        stage("Check prod bucket") {
+            steps {
+                sh "./utils/check_bucket_size.sh -p ${env.GOOGLE_PROJECT} -r ${env.GOOGLE_REGION} -z ${env.GOOGLE_ZONE} -b ${env.PROD_BUCKET_NAME}"
             }
         }
     }
