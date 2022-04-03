@@ -1,6 +1,10 @@
 DOCKER_USER_NAME=jeanflores2c93
 DOCKER_IMAGE_NAME=$(DOCKER_USER_NAME)/terraform-google-sdk-jenkins-agent:latest
-PROJECT_ID=steady-tape-345517
+GOOGLE_PROJECT=steady-tape-345517
+GOOGLE_REGION=us-central1
+GOOGLE_ZONE=us-central1-a
+FILE_PATH_UPLOAD_GCS_BUCKET=dev_files
+DEV_BUCKET_NAME=acme-storage-dev-jean-flores
 
 all: dockerize push intregration_test
 
@@ -32,10 +36,20 @@ dpt:
 	@echo push to dockerhub
 	docker push jeanflores2c93/terraform-gcp-sdk-agent
 
-create-gs-bucket:
-	@echo create gcs bucket for backend terraform
-	gsutil mb gs://backend-dev-jean-flores
-	gcloud config set project $PROJECT_ID
+upload-files:
+	@echo upload files to gcs bucket in the dev environment.
+	export GOOGLE_PROJECT=$(GOOGLE_PROJECT)
+	export GOOGLE_REGION=$(GOOGLE_REGION)
+	export GOOGLE_ZONE=$(GOOGLE_ZONE)
+	gcloud auth application-default login
+	gcloud config set project $(GOOGLE_PROJECT)
+	gsutil ls
+	gsutil cp -r  dev_files gs://$(DEV_BUCKET_NAME)
+
+clear-bucket:
+	@echo Get bucket size.
+	gcloud auth application-default login
+	./dev_files/get_bucket_size.sh -p $(GOOGLE_PROJECT) -r $(GOOGLE_REGION) -z $(GOOGLE_ZONE) -b $(DEV_BUCKET_NAME)
 
 ### Dev bucket name
 # gs://backend-dev-jean-flores
