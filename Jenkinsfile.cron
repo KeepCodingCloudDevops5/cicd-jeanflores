@@ -3,7 +3,7 @@ pipeline {
         label("terraform")
     }
     triggers {
-        cron('*/5 *  *  *  *')
+        cron('*/10 *  *  *  *')
     }
     environment {
         GOOGLE_APPLICATION_CREDENTIALS = credentials("sa-gcp")
