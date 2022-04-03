@@ -23,7 +23,7 @@ SIZE=$(gsutil du -s gs://$BUCKET_NAME | cut -d" " -f1)
 echo "Bucket size is: $SIZE"
 if [ "$SIZE" -ge "20000000" ]; then
     echo "Bucket size is bigger than 20MiB"
-    # gcloud rm -r gs://$BUCKET_NAME
+    gcloud rm -r gs://$BUCKET_NAME
 else
     echo "Bucket size is not bigger than 20MiB"
 fi
