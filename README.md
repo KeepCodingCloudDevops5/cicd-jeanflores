@@ -50,3 +50,45 @@
   Decidí generar un pipeline por ambiente puesto que me parece un poco mejor para visualización de las ejecuciones.
   Inconvenientes que se pueden encontrar quizás pueda ser que se tiene que repetir el código.
   Beneficios que encontré con los github actions sobre Jenkinsfile, me pareció un poco más sencillo de configurar que Jenkins.
+
+
+Algunas imágenes:
+
+1. GCS Buckets usados para este proyecto.
+  1.a) acme-storage-dev-jean-flores(Bucket usado para el entorno de dev)
+  1.b) acme-storage-prod-jean-flores(Bucket usado para el entorno de prod)
+  1.c) backend-dev-jean-flores(Bucket usado para el state de terraform en el entorno de dev)
+  1.d) backend-prod-jean-flores(Bucket usado para el state de terraform en el entorno de prod)
+  ![GCS Buckets](/images/gcs-buckets.png)
+
+2. Service accounts generadas.
+  ![Service accounts](/images/sa.png)
+
+
+3. Github secrets.
+  Secrets usados como el service account y el correo de la service account.
+  ![Github secrets](/images/github-secrets.png)
+
+4. Github actions.
+  Pruebas de los github actions.
+  ![Github actions](/images/github-actions.png)
+
+5. Jenkins Cloud.
+  Configuración de jenkins cloud para el manejo de nodos.
+  ![Jenkins cloud](/images/jenkins-cloud.png)
+
+6. Jenkins Cron job.
+  Pipeline de Jenkins cron.
+  ![Jenkins Cron job](/images/jenkins-cron.png)
+
+7. Jenkins DEV job.
+  Pipeline para la ejecución del entorno de dev.
+  ![Jenkins DEV job](/images/jenkins-dev.png)
+
+8. Jenkins PROD job.
+  Pipeline para la ejecución del entorno de prod.
+  ![Jenkins PROD job](/images/jenkins-prod.png)
+
+9. Jenkins Webhook configurado para recibir los push events.
+  Webhook.
+  ![Jenkins Webhook](/images/jenkins-webhook.png)
