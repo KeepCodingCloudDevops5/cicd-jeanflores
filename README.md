@@ -18,7 +18,7 @@
   Iniciará la subida de la imagen terraform con gcp a DockerHub.<br>
 
   make upload-file<br>
-  Subirá los archivos necesarios al bucket de Dev que en esta ocasión tiene el nombre de  acme-storage-dev-jean-flores.
+  Subirá los archivos necesarios al bucket de Dev que en esta ocasión tiene el nombre de  acme-storage-dev-jean-flores.<br>
 
   make clear-bucket<br>
   Este comando realizará la ejecución el inicio de sesión para verificar que la persona encargada tenga los permisos necesarios, luego se ejecutará un script el cuál verificiará si el bucket tiene un tamaño mayor a 20 Mib, si el bucket tiene un tamaño mayor al mencionado se eliminará todos los datos de este bucket.<br>
